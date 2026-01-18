@@ -1,10 +1,13 @@
 import kagglehub
+import pandas as pandas
+import matplotlib.pyplot as plt
+
 path = kagglehub.dataset_download("lainguyn123/student-performance-factors")
 
 filename = path + "/StudentPerformanceFactors.csv"
 print("Dataset file: ", filename)
 
-import pandas as pandas
+
 
 df = pandas.read_csv(filename)
 
@@ -21,4 +24,20 @@ df = pandas.read_csv(filename)
 # Anzahl der Werte in einer Spalte
 #print(df.count())
 
-print(df["Hours_Studied"].value_counts( ))
+
+# Ausgabe der Häufigkeiten der einzelen Merkamlsausprägungen
+#print(df["Hours_Studied"].value_counts())
+
+
+# Daten in einem Streudiagramm plotten
+
+# Daten für den Plot vorbereiten
+x = df['Hours_Studied']
+y = df['Exam_Score']
+
+# Plot erstellen
+plt.scatter(x, y)
+plt.xlabel('Stunden gelernt')
+plt.ylabel('Ergebnis')
+plt.title('Stunden gelernt vs. Ergebnis')
+plt.show()
